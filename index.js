@@ -15,6 +15,9 @@ app
   })
   .post("/upload", upload.single("attachment"), (req, res) => {
     console.dir(req.file);
+    if (Math.random() < 0.5) {
+      return res.status(500).json({ message: "an error occurred" });
+    }
     res.json({ id: req.file.filename });
   });
 
